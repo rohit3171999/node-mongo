@@ -18,9 +18,9 @@ const app = express();
 
 app.get('/add-product', async (req, res) => {
     await Product.create({
-        name: "iPhone 14 Pro Max",
-        price: 120000,
-        category: "Mobile"
+        name: "Laptop",
+        price: 1200000,
+        category: "Electronicas"
     });
     res.send('Product Added!!');
 });
