@@ -36,6 +36,11 @@ app.get("/update/product", async (req, res) =>{
         res.send("Product Updated!!");
 })
 
+app.get("/delete/product", async (req, res) =>{
+    await Product.deleteOne({name: "Shampoo-xyz"});
+    res.send("Product Deleted!!");
+});
+
 app.listen(3000, () => {
     console.log('Server Running');
 });
