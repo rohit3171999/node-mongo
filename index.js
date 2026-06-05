@@ -12,8 +12,6 @@ mongoose.connect(
         console.log("err");
     });
 
-
-
 const app = express();
 
 app.get('/add-product', async (req, res) => {
@@ -25,9 +23,17 @@ app.get('/add-product', async (req, res) => {
     res.send('Product Added!!');
 });
 
-app.get("/products", async (req, res) =>{
+app.get("/products", async (req, res) => {
     const products = await Product.find();
     res.json(products);
+});
+
+app.get("/update/product", async (req, res) =>{
+    await Product.updateOne(
+        {name: "Laptop"},
+        {$set: {price: 20}}
+    );
+        res.send("Product Updated!!");
 })
 
 app.listen(3000, () => {
