@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); // Just to connect to MongoDB
 const express = require('express');
-const Product = reqire("./models/Product");
+const Product = require("./models/Product");
 
 mongoose.connect(
     "mongodb://127.0.0.1:27017/rohitdb"
@@ -18,12 +18,17 @@ const app = express();
 
 app.get('/add-product', async (req, res) => {
     await Product.create({
-        name: "Shampoo",
+        name: "iPhone 14 Pro Max",
         price: 120000,
-        category: "Hair Care"
+        category: "Mobile"
     });
     res.send('Product Added!!');
 });
+
+app.get("/products", async (req, res) =>{
+    const products = await Product.find();
+    res.json(products);
+})
 
 app.listen(3000, () => {
     console.log('Server Running');
