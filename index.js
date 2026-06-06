@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'); // Just to connect to MongoDB
 const express = require('express');
 const Product = require("./models/Product");
+const Order = require("./models/Order");
 
 mongoose.connect(
     "mongodb://127.0.0.1:27017/rohitdb"
@@ -39,6 +40,35 @@ app.get("/update/product", async (req, res) =>{
 app.get("/delete/product", async (req, res) =>{
     await Product.deleteOne({name: "Shampoo-xyz"});
     res.send("Product Deleted!!");
+});
+
+app.get("/add-orders", async (req, res) => {
+
+    await Order.create([
+        {
+            city: "Delhi",
+            amount: 1000,
+            product: "Shampoo"
+        },
+        {
+            city: "Delhi",
+            amount: 2000,
+            product: "Face Wash"
+        },
+        {
+            city: "Mumbai",
+            amount: 500,
+            product: "Hair Oil"
+        },
+        {
+            city: "Mumbai",
+            amount: 700,
+            product: "Shampoo"
+        }
+    ]);
+
+    res.send("Orders Added");
+
 });
 
 app.listen(3000, () => {
