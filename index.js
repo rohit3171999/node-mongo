@@ -55,10 +55,13 @@ app.get("/sales-by-city", async (req, res)=>{
         //         totalSales: -1
         //     }
         // }
+        // {
+        //     $match: {
+        //         city: "Delhi"
+        //     }
+        // }
         {
-            $match: {
-                city: "Delhi"
-            }
+            $count: "totalOrders"
         }
     ]);
     res.json(result);
