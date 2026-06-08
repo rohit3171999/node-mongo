@@ -44,10 +44,15 @@ app.get("/delete/product", async (req, res) =>{
 
 app.get("/sales-by-city", async (req, res)=>{
     const result = await Order.aggregate([
+        // {
+        //     $group: {
+        //         _id: "$city",
+        //         totalSales: {$sum: "$amount"}
+        //     }
+        // }
         {
-            $group: {
-                _id: "$city",
-                totalSales: {$sum: "$amount"}
+            $sort: {
+                totalSales: -1
             }
         }
     ]);
