@@ -42,6 +42,17 @@ app.get("/delete/product", async (req, res) =>{
     res.send("Product Deleted!!");
 });
 
+app.get("/sales-by-city", async (req, res)=>{
+    const result = await Order.aggregate([
+        {
+            $group: {
+                _id: "$city",
+                totalSales: {$sum: "$amount"}
+            }
+        }
+    ]);
+    res.json(result);
+});
 app.get("/add-orders", async (req, res) => {
 
     await Order.create([
