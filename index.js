@@ -10,7 +10,7 @@ mongoose.connect(
         console.log("Mongo Connected");
     })
     .catch((err) => {
-        console.log("err");
+        console.log(err);
     });
 
 const app = express();
