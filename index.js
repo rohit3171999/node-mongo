@@ -50,9 +50,14 @@ app.get("/sales-by-city", async (req, res)=>{
         //         totalSales: {$sum: "$amount"}
         //     }
         // }
+        // {
+        //     $sort: {
+        //         totalSales: -1
+        //     }
+        // }
         {
-            $sort: {
-                totalSales: -1
+            $match: {
+                city: "Delhi"
             }
         }
     ]);
